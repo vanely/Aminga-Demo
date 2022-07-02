@@ -6,9 +6,8 @@ const app = express()
 const port = 3030
 
 // ---------------------------------------------------------- [ DATABASE ] ----------------------------------------------------------
-const adapter = new JSONFile('./db.json')
+const adapter = new JSONFile('db.json')
 const db = new Low(adapter)
-db.read()
 
 db.data = db.data || { sportsData: [] }
 
