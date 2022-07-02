@@ -7,7 +7,7 @@ frontend
 backend
 [x] connect json db to server
 [x] make successful db reads and writes
-[] expose server to outside of local network with ngrok
+[x] expose server to outside of local network with ngrok
 
 aminga helpers
 [] in engen add windows vscode install, and nvm install

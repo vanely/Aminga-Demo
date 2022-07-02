@@ -1,0 +1,14 @@
+{
+  "sportsData": [
+    {
+      "firstName": "Vanely",
+      "lastName": "Santos",
+      "age": "38",
+      "sport": "basketBall",
+      "twoPoints": "26",
+      "threePoints": "17",
+      "pointsGained": "",
+      "score": ""
+    }
+  ]
+}

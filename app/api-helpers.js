@@ -7,6 +7,7 @@ export async function getSportsData() {
   const data = await res.json()
   return data
 }
+
 /** 
 * Saves sports data to local database.
 * @param {Object} data - Student data to be saved.

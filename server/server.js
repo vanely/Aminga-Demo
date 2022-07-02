@@ -6,7 +6,7 @@ const app = express()
 const port = 3030
 
 // ---------------------------------------------------------- [ DATABASE ] ----------------------------------------------------------
-const adapter = new JSONFile('db.json')
+const adapter = new JSONFile('./db.json')
 const db = new Low(adapter)
 
 db.data = db.data || { sportsData: [] }
@@ -25,6 +25,7 @@ app.get('/sports-data', function (req, res) {
 
 app.post('/student-data', function(req, res) {
   const { sportsData } = db.data
+  // check if student already exists in db, and append missing data(sports data)
   const studentData = sportsData.push(req.body)
   console.log('request body: ')
   console.dir(req.body)

@@ -15,21 +15,19 @@ function formatStudentDataToCSV(data) {
   const keys = Object.keys(dataCopy[0]);
 
   let result = "";
-  // can simplify, and just add comma
+  // comma separate object keys to later be interpreted as columns in csv
   result += keys.join(columnDelimiter);
   // can just concat new like at end
   result += rowDelimiter;
 
-  dataCopy.forEach((item) => {
-    let counter = 0;
+  dataCopy.forEach((item, index) => {
     // add respective row(values) to every column(key)
     keys.forEach((key) => {
       // add comma after first index
-      if (counter > 0) result += columnDelimiter;
+      if (index > 0) result += columnDelimiter;
 
       // add row value to column
       result += item[key];
-      counter++;
     });
     result += rowDelimiter;
   });
@@ -46,7 +44,7 @@ export function downloadCSV(data, filename) {
   let csv = formatStudentDataToCSV(data);
   if (!csv) return;
 
-  const file = filename || "export.csv";
+  const file = filename || "sports-data.csv";
 
   if (!csv.match(/^data:text\/csv/i)) {
     csv = "data:text/csv;charset=utf-8," + csv;

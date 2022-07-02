@@ -56,6 +56,7 @@ submit.addEventListener('click', function(e) {
 
 generateCSV.addEventListener('click', function(e) {
   const sportsData = getSportsData()
+  const sportsDataCSV = downloadCSV(sportsData)
   console.log("Sports Data: ")
   console.dir(sportsData)
 })
