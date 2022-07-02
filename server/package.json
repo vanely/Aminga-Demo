@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "parcel ./server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +13,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "lowdb": "^3.0.0"
+    "lowdb": "^3.0.0",
+    "parcel": "^2.6.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.18"
