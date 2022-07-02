@@ -1,5 +1,5 @@
 const express = require('express')
-const {LowSync, JSONFileSync} = require('lowdb/lib')
+
 // const FileSync = require('lowdb/adapters/FileSync')
 const cors = require('cors')
 const app = express()
@@ -7,7 +7,6 @@ const app = express()
 const port = 3030
 
 // ----------------------------- [ DATABASE ] -----------------------------
-// const db = lowdb(new FileSync('db.json'))
 // db.defaults({ sportsData: [] }).write()
 
 // ----------------------------- [ MIDDLEWARE ] -----------------------------
