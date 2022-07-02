@@ -1,0 +1,9 @@
+frontend
+[] write html form for sending data to json db.
+[] write css to prettify form
+[] write js to query all user data, and export to csv
+
+backend
+[] connect json db to server
+[] make successful db reads and writes
+[] expose server to outside of local network with ngrok
