@@ -1,9 +1,32 @@
 frontend
-[] write html form for sending data to json db.
-[] write css to prettify form
-[] write js to query all user data, and export to csv
+[x] write html form for sending data to json db.
+[x] write css to prettify form
+  [] make styles pretty
+[x] write js to query all user data, and export to csv
 
 backend
-[] connect json db to server
-[] make successful db reads and writes
+[x] connect json db to server
+[x] make successful db reads and writes
 [] expose server to outside of local network with ngrok
+
+aminga helpers
+[] in engen add windows vscode install, and nvm install
+
+ref to expected interface
+const stockData = [
+  {
+    Symbol: "AAPL",
+    Company: "Apple Inc.",
+    Price: 132.54,
+  },
+  {
+    Symbol: "INTC",
+    Company: "Intel Corporation",
+    Price: 33.45,
+  },
+  {
+    Symbol: "GOOG",
+    Company: "Google Inc",
+    Price: 554.52,
+  },
+]

@@ -1,0 +1,63 @@
+body {
+  background-color: aquamarine;
+}
+
+h1 {
+  text-align: center;
+}
+
+#student-sport-data {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 80vw;
+  margin: 0 auto;
+  background-color: aqua;
+}
+
+.form-fields-container {
+  display: flex;
+  width: 100%;
+}
+
+/* student information */
+.student-info {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+/* sport data */
+.sport-specific-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+/* sport palyed in camp */
+.sport-selection {
+  
+}
+
+.basket-ball {
+  display: block;
+}
+
+.volley-ball {
+  display: none;
+}
+
+.hand-ball {
+  display: none;
+}
+
+/* btns */
+.btns {
+  display: flex;
+  justify-content: space-evenly;
+  height: 30px
+}
+
+.submit, .generate-csv {
+  width: 110px;
+}

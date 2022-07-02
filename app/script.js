@@ -1,92 +1,61 @@
 // NOTE: keep this as very basic implementation.
-import { func, request } from './helpers.js'
+import { getSportsData, postStudentData } from './api-helpers.js'
+import { downloadCSV } from './csv-helpers.js'
 
-const download = document.querySelector('.download')
-const stockData = [
-  {
-    Symbol: "AAPL",
-    Company: "Apple Inc.",
-    Price: 132.54,
-  },
-  {
-    Symbol: "INTC",
-    Company: "Intel Corporation",
-    Price: 33.45,
-  },
-  {
-    Symbol: "GOOG",
-    Company: "Google Inc",
-    Price: 554.52,
-  },
-]
+// get all data from input elements
+const studentSportData = document.querySelectorAll('#student-sport-data input, #student-sport-data select')
+const chosenSport = document.querySelector('.chosen-sport')
+const basketBallform = document.querySelector('.basket-ball')
+const volleyBallform = document.querySelector('.volley-ball')
+const handBallform = document.querySelector('.hand-ball')
+// reference to submit button
+const submit = document.querySelector('.submit')
+const generateCSV = document.querySelector('.generate-csv')
 
-/** 
-* Formats data in an array of objects into that expectd by a comma delimited csv file.
-* @param {Array} data - Array of objects containing data for formatting.
-* @return {String} String of comma delimited columns, and new line delimited rows.
-*/
-function convertArrayOfObjectsToCSV(data) {
-  const dataCopy = data || null;
-  if (dataCopy == null || !dataCopy.length) {
-    return null;
+chosenSport.addEventListener('change', function(e) {
+  console.log(`option changed to: ${chosenSport.value}`)
+  if (chosenSport.value === "basketBall") {
+    basketBallform.style.display = "block"
+    volleyBallform.style.display = "none"
+    handBallform.style.display = "none"
+
+  } else if (chosenSport.value === "volleyBall") {
+    basketBallform.style.display = "none"
+    volleyBallform.style.display = "block"
+    handBallform.style.display = "none"  
+
+  } else if (chosenSport.value === "handBall") {
+    basketBallform.style.display = "none"
+    volleyBallform.style.display = "none"
+    handBallform.style.display = "block"  
+  }
+})
+
+// listen for when form is submitted
+submit.addEventListener('click', function(e) {
+  // const data = new FormData()
+  const data = {}
+
+  for (let field of studentSportData) {
+    console.log("form field: ")
+    console.dir(field)
+    // we don't want the submit, and button inputs, they don't have any data
+    if (field.type !== "submit" && field.type !== "button") {
+      // data.append(field.name, field.value)
+      data[field.name] = field.value
+    }
   }
 
-  const columnDelimiter = ",";
-  const rowDelimiter =  "\n";
+  postStudentData(data)
+  // for (let [k, v] of data.entries()) {
+  //   console.log(`${k}: ${v}`)
+  // }
+  console.log('Form Data: ')
+  console.log(data)
+})
 
-  const keys = Object.keys(dataCopy[0]);
-
-  let result = "";
-  // can simplify, and just add comma
-  result += keys.join(columnDelimiter);
-  // can just concat new like at end
-  result += rowDelimiter;
-
-  dataCopy.forEach((item) => {
-    let counter = 0;
-    // add respective row(values) to every column(key)
-    keys.forEach((key) => {
-      // add comma after first index
-      if (counter > 0) result += columnDelimiter;
-
-      // add row value to column
-      result += item[key];
-      counter++;
-    });
-    result += rowDelimiter;
-  });
-
-  return result;
-}
-
-/** 
-* Covert formatted csv data into csv file.
-* @param {Array} data - Array of objects containing data for formatting.
-* @param {String} filename - Name of output csv file.
-*/
-function downloadCSV(data, filename) {
-  let csv = convertArrayOfObjectsToCSV(data);
-  if (!csv) return;
-
-  const file = filename || "export.csv";
-
-  if (!csv.match(/^data:text\/csv/i)) {
-    csv = "data:text/csv;charset=utf-8," + csv;
-  }
-  const encodedData = encodeURI(csv);
-
-  // html portion
-  const link = document.createElement("a");
-  link.setAttribute("href", encodedData);
-  link.setAttribute("download", file);
-  link.click();
-}
-// downloadCSV(stockData);
-// console.log("downloadCSV: ");
-// console.dir(downloadCSV(stockData));
-
-download.addEventListener('click',(e) => {
-  // func()
-  request()
-  // downloadCSV(stockData, 'stock-data')
+generateCSV.addEventListener('click', function(e) {
+  const sportsData = getSportsData()
+  console.log("Sports Data: ")
+  console.dir(sportsData)
 })

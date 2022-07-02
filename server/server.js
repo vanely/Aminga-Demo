@@ -1,34 +1,40 @@
-const express = require('express')
+import express from 'express'
+import { Low, JSONFile } from 'lowdb'
+import cors from 'cors'
 
-// const FileSync = require('lowdb/adapters/FileSync')
-const cors = require('cors')
 const app = express()
-
 const port = 3030
 
-// ----------------------------- [ DATABASE ] -----------------------------
-// db.defaults({ sportsData: [] }).write()
+// ---------------------------------------------------------- [ DATABASE ] ----------------------------------------------------------
+const adapter = new JSONFile('./db.json')
+const db = new Low(adapter)
+db.read()
 
-// ----------------------------- [ MIDDLEWARE ] -----------------------------
+db.data = db.data || { sportsData: [] }
+
+// ---------------------------------------------------------- [ MIDDLEWARE ] ----------------------------------------------------------
 app.use(cors())
 app.use(express.json())
 
-// ----------------------------- [ ROUTES ] -----------------------------
+// ---------------------------------------------------------- [ ROUTES ] ----------------------------------------------------------
 app.get('/sports-data', function (req, res) {
-  // const data = db.get('sportsData').value()
-  const data = ''
+  const { sportsData } = db.data
+  const data = sportsData
   
   res.status(200).json(data)
 })
 
 app.post('/student-data', function(req, res) {
-  const studentData = req.body
-  // db.get('sportsData').push({...studentData}).write()
+  const { sportsData } = db.data
+  const studentData = sportsData.push(req.body)
+  console.log('request body: ')
+  console.dir(req.body)
+  db.write()
   
-  res.status(200).json({ success: true })
+  res.status(200).json(JSON.stringify(studentData))
 })
 
-// ----------------------------- [ SERVER ] -----------------------------
+// ---------------------------------------------------------- [ SERVER ] ----------------------------------------------------------
 app.listen(port, () => {
   console.log(`Serving on port: ${port}`)
 })
