@@ -47,9 +47,6 @@ submit.addEventListener('click', function(e) {
   }
 
   postStudentData(data)
-  // for (let [k, v] of data.entries()) {
-  //   console.log(`${k}: ${v}`)
-  // }
   console.log('Form Data: ')
   console.log(data)
 })

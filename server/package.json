@@ -2,10 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "exports": "./server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node ./server.js"
+    "start": "nodemon ./server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +12,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "lowdb": "^3.0.0"
+    "lodash": "^4.17.21",
+    "lowdb": "^3.0.0",
+    "mongodb": "^4.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

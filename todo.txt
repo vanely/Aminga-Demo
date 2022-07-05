@@ -8,6 +8,19 @@ backend
 [x] connect json db to server
 [x] make successful db reads and writes
 [x] expose server to outside of local network with ngrok
+______________________________________________________________________
+ngrok setup
+https://medium.com/aeturnuminc/getting-started-with-ngrok-ed67891a74bd
+
+package.json start script
+"start": "nodemon --ignore 'db.json' --exec babel-node ./server.js"
+
+.babelrc config
+{
+  "presets": [
+    "@babel/preset-env"
+  ]
+}
 
 aminga helpers
 [] in engen add windows vscode install, and nvm install
