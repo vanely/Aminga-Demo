@@ -1,11 +1,7 @@
-// import express from 'express'
-// import { MongoClient } from 'mongodb'
-// import { LowSync, JSONFileSync } from 'lowdb'
-// import lodash from 'lodash'
-// import cors from 'cors'
 const express = require('express')
 const { MongoClient } = require('mongodb')
 const cors = require('cors')
+const _ = require('lodash')
 
 const app = express()
 const port = 3030
@@ -15,11 +11,6 @@ app.use(cors())
 app.use(express.json())
 
 // ---------------------------------------------------------- [ DATABASE ] ----------------------------------------------------------
-// const adapter = new JSONFileSync('./db.json')
-// const db = new LowSync(adapter)
-// db.data = db.data || { sportsData: [] }
-// db.chain = lodash.chain(db.data)
-
 const mongoUri = 'mongodb://localhost:27017'
 const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -43,20 +34,18 @@ async function runMongo() {
       console.log("req.body - student data: ")
       console.dir(studentData)
       const existingUser = await sportsDataCollection.findOne({firstName: studentData.firstName, lastName: studentData.lastName})
-      if (existingUser.firstName) {
-        console.log('user already in database')
+      if (_.get(existingUser, 'firstName', '')) {
+        console.log('Updating user in database...')
         //find and update
         const updatedEntry = await sportsDataCollection.findOneAndUpdate(
           { firstName: studentData.firstName, lastName: studentData.lastName },
-          studentData, { new: true }
+          { $set: studentData }, { new: true }
         )
+        res.status(200).json(JSON.stringify(updatedEntry))
+      } else {
+        const insert = await sportsDataCollection.insertOne(studentData)
+        res.status(200).json(JSON.stringify(insert))
       }
-
-      const insert = await sportsDataCollection.insertOne(studentData)
-    
-      console.log('sports data: ')
-      console.dir(insert)
-      res.status(200).json(JSON.stringify(insert))
     })
 
   } finally {

@@ -8,65 +8,71 @@
     <title>Aminga Sports Data</title>
   </head>
   <body>
-    <h1>Aminga Sports Data</h1>
+    <section class="generate-csv-container">
+      <input class="generate-csv" type="button" value="Download">
+    </section>
+    <section class="form-title">
+      <h1>Aminga Sports Data</h1>
+    </section>
     <form id="student-sport-data">
       <section class="form-fields-container">
         <!-- student information -->
         <section class="student-info">
           <label for="first-name">
-            First Name:
-            <input type="text" name="firstName" id="first-name" placeholder="Enter First Name" required>
+            First Name
+            <input class="field" type="text" name="firstName" id="first-name" placeholder="Enter First Name" required>
           </label>
           <label for="last-name">
-            Last Name:
-            <input type="text" name="lastName" id="last-name" placeholder="Enter Last Name" required>
+            Last Name
+            <input class="field" type="text" name="lastName" id="last-name" placeholder="Enter Last Name" required>
           </label>
           <label for="age">
-            Age:
-            <input type="number" name="age" id="age" placeholder="Enter Age" required>
+            Age
+            <input class="field" type="number" name="age" id="age" placeholder="Enter Age" required>
           </label>
         </section>
         <!-- sport data -->
         <section class="sport-specific-form">
           <!-- sport palyed in camp -->
           <section class="sport-selection">
-            <label>Choose Your Sport</label>
-            <select class="chosen-sport" name="sport" required>
-              <option value="basketBall">Basket Ball</option>
-              <option value="volleyBall">Volley Ball</option>
-              <option value="handBall">Hand Ball</option>
-            </select>
+            <label>
+              Choose Your Sport
+              <select class="chosen-sport" name="sport" required>
+                <option value="basketBall">Basket Ball</option>
+                <option value="volleyBall">Volley Ball</option>
+                <option value="handBall">Hand Ball</option>
+              </select>
+            </label>
           </section>
           <!-- maybe simplify these and allow for just a score field -->
           <section class="basket-ball">
             <label for="two-points">
-              Two Points:
-              <input type="number" name="twoPoints" id="two-points" placeholder="Two point shots daily">
+              Two Points
+              <input class="field" type="text" name="twoPoints" id="two-points" placeholder="Two point shots daily">
             </label>
             <label for="three-points">
-              Three Points:
-              <input type="number" name="threePoints" id="three-points" placeholder="Three points shots daily">
+              Three Points
+              <input class="field" type="text" name="threePoints" id="three-points" placeholder="Three points shots daily">
             </label>
           </section>
   
           <section class="volley-ball">
             <label for="points-gained">
-              Points Gained:
-              <input type="text" name="pointsGained" id="points-gained" placeholder="Points gained daily">
+              Points Gained
+              <input class="field" type="text" name="pointsGained" id="points-gained" placeholder="Points gained daily">
             </label>
           </section>
   
           <section class="hand-ball">
             <label for="score">
-              Score:
-              <input type="text" name="score" id="score" placeholder="Daily score">
+              Score
+              <input class="field" type="text" name="score" id="score" placeholder="Daily score">
             </label>
           </section>
         </section>
       </section>
-      <section class="btns">
+      <section class="submit-container">
         <input class="submit" type="button" value="Submit">
-        <input class="generate-csv" type="button" value="Generate CSV">
       </section>
     </form>
 
