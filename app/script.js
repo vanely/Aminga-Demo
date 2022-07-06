@@ -37,8 +37,6 @@ submit.addEventListener('click', function(e) {
   const data = {}
 
   for (let field of studentSportData) {
-    console.log("form field: ")
-    console.dir(field)
     // we don't want the submit, and button inputs, they don't have any data
     if (field.type !== "submit" && field.type !== "button") {
       // data.append(field.name, field.value)
