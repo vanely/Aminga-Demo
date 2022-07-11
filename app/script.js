@@ -1,4 +1,3 @@
-// NOTE: keep this as very basic implementation.
 import { getSportsData, postStudentData } from './api-helpers.js'
 import { downloadCSV } from './csv-helpers.js'
 
@@ -33,8 +32,11 @@ chosenSport.addEventListener('change', function(e) {
 
 // listen for when form is submitted
 submit.addEventListener('click', function(e) {
-  // const data = new FormData()
   const data = {}
+
+  // add millisecond time stamp and date string time stamp
+  data.dateMs = `${Date.now()}`
+  data.dateString = new Date(Date.now()).toDateString()
 
   for (let field of studentSportData) {
     // we don't want the submit, and button inputs, they don't have any data

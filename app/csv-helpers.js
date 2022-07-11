@@ -12,7 +12,15 @@ function formatStudentDataToCSV(data) {
   const columnDelimiter = ","
   const rowDelimiter = "\n"
 
-  const keys = Object.keys(dataCopy[0])
+  // get difference of all keys
+  // const allKeys = [] 
+  // dataCopy.forEach(function(obj) {
+  //   allKeys.push(Object.keys(obj))
+  // })
+  // const uniqueKeys = [...new Set(allKeys)]
+  
+  // get last object's keys
+  const keys = Object.keys(dataCopy[dataCopy.length - 1])
 
   let result = ""
   // comma separate object keys to later be interpreted as columns in csv
@@ -20,7 +28,7 @@ function formatStudentDataToCSV(data) {
   // can just concat new like at end
   result += rowDelimiter
 
-  dataCopy.forEach((item) => {
+  dataCopy.forEach(function(item) {
     let counter = 0
     // add respective row(values) to every column(key)
     keys.forEach((key) => {
